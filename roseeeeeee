@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Choose ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #120000, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    /* ---------------- ROSE ---------------- */
+    .rose {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .petal {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: radial-gradient(circle, #ff4d4d, #990000);
+      border-radius: 50%;
+    }
+
+    .p1 { transform: rotate(0deg) translateY(-25px); }
+    .p2 { transform: rotate(60deg) translateY(-25px); }
+    .p3 { transform: rotate(120deg) translateY(-25px); }
+    .p4 { transform: rotate(180deg) translateY(-25px); }
+    .p5 { transform: rotate(240deg) translateY(-25px); }
+    .p6 { transform: rotate(300deg) translateY(-25px); }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      background: red;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 40px red;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* ------------- BUTTONS ------------- */
+    .buttons {
+      display: flex;
+      gap: 40px;
+      position: relative;
+    }
+
+    button {
+      width: 120px;
+      height: 120px;
+      font-size: 18px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    #accept {
+      background: #00b300;
+      color: white;
+    }
+
+    #reject {
+      background: #b30000;
+      color: white;
+      position: relative;
+    }
+
+    /* fireworks particles */
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 28px;
+      opacity: 0;
+      transition: 1s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🌹 ROSE -->
+  <div class="rose">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+    <div class="petal p6"></div>
+    <div class="center"></div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button id="accept">ACCEPT ❤️</button>
+    <button id="reject">REJECT ❌</button>
+  </div>
+
+  <div id="message">Yayyy!! 🎉❤️</div>
+
+<script>
+/* ---------------- REJECT RUN AWAY ---------------- */
+const rejectBtn = document.getElementById("reject");
+
+function moveButton() {
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 150);
+  rejectBtn.style.position = "absolute";
+  rejectBtn.style.left = x + "px";
+  rejectBtn.style.top = y + "px";
+}
+
+rejectBtn.addEventListener("mouseenter", moveButton);
+rejectBtn.addEventListener("touchstart", moveButton);
+
+
+/* ---------------- FIREWORKS ---------------- */
+const acceptBtn = document.getElementById("accept");
+const msg = document.getElementById("message");
+
+acceptBtn.addEventListener("click", () => {
+  msg.style.opacity = 1;
+
+  for (let i = 0; i < 120; i++) {
+    createParticle();
+  }
+});
+
+function createParticle() {
+  const p = document.createElement("div");
+  p.className = "particle";
+
+  const colors = ["red","yellow","orange","pink","white"];
+  p.style.background = colors[Math.floor(Math.random()*colors.length)];
+
+  document.body.appendChild(p);
+
+  const x = window.innerWidth/2;
+  const y = window.innerHeight/2;
+
+  p.style.left = x + "px";
+  p.style.top = y + "px";
+
+  const angle = Math.random() * 2 * Math.PI;
+  const distance = Math.random() * 300;
+
+  const dx = Math.cos(angle) * distance;
+  const dy = Math.sin(angle) * distance;
+
+  p.animate([
+    { transform: "translate(0,0)", opacity: 1 },
+    { transform: `translate(${dx}px, ${dy}px)`, opacity: 0 }
+  ], {
+    duration: 1200,
+    easing: "ease-out"
+  });
+
+  setTimeout(() => p.remove(), 1200);
+}
+</script>
+
+</body>
+</html>
