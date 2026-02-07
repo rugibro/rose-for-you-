@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You 🌹</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #000000, #200000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    /* ===== ROSE CONTAINER ===== */
+    .rose {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* petals */
+    .petal {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+      border-radius: 50%;
+      transform-origin: center;
+      box-shadow: 0 0 25px rgba(255,0,0,0.6);
+    }
+
+    .p1 { transform: rotate(0deg) translateY(-25px); }
+    .p2 { transform: rotate(60deg) translateY(-25px); }
+    .p3 { transform: rotate(120deg) translateY(-25px); }
+    .p4 { transform: rotate(180deg) translateY(-25px); }
+    .p5 { transform: rotate(240deg) translateY(-25px); }
+    .p6 { transform: rotate(300deg) translateY(-25px); }
+
+    /* center */
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 90px;
+      height: 90px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, #ff0000, #660000);
+      border-radius: 50%;
+      box-shadow: 0 0 40px red;
+    }
+
+    /* stem */
+    .stem {
+      position: absolute;
+      width: 10px;
+      height: 200px;
+      background: linear-gradient(#0a5c0a, #053b05);
+      bottom: -190px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    /* leaves */
+    .leaf {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      background: #0f7a0f;
+      border-radius: 50%;
+    }
+
+    .leaf.left {
+      left: -70px;
+      bottom: 60px;
+      transform: rotate(-30deg);
+    }
+
+    .leaf.right {
+      right: -70px;
+      bottom: 90px;
+      transform: rotate(30deg);
+    }
+
+    /* floating animation */
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* message */
+    .msg {
+      position: absolute;
+      bottom: 60px;
+      font-size: 26px;
+      text-align: center;
+      opacity: 0;
+      animation: show 4s ease forwards 2s;
+    }
+
+    @keyframes show {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="rose">
+    <div class="petal p1"></div>
+    <div class="petal p2"></div>
+    <div class="petal p3"></div>
+    <div class="petal p4"></div>
+    <div class="petal p5"></div>
+    <div class="petal p6"></div>
+    <div class="center"></div>
+    <div class="stem"></div>
+    <div class="leaf left"></div>
+    <div class="leaf right"></div>
+  </div>
+
+  <div class="msg">
+    This rose is for you ❤️
+  </div>
+
+</body>
+</html>
